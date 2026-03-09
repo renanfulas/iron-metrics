@@ -1,3 +1,6 @@
+Vídeo no YOUTUBE do APP https://www.youtube.com/watch?v=69t-fd9FR90
+
+
 ***The science of physique progress — simple, precise, and visual.***
 
 **Iron Metrics é uma aplicação web desenvolvida para registrar avaliações físicas e visualizar a evolução corporal de forma clara e objetiva.**
