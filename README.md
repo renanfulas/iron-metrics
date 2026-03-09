@@ -60,7 +60,7 @@ Visualização de dados:
 
   -organização das avaliações por aluno
 
-Avaliação física:
+**Avaliação física:**
 
   *cálculo de 7 dobras cutâneas (POLLOCK 7 DOBRAS)
 
@@ -72,17 +72,17 @@ Avaliação física:
 
   *fácil navegação entre registros anteriores
 
-  -Dashboard de evolução
+ **Dashboard de evolução**
 
   *gráfico de linha mostrando evolução do BF%
 
   *gráfico de pizza mostrando composição atual
 
-Interface interativa
+**Interface interativa**
 
 seleção de avaliações antigas atualiza os gráficos automaticamente
 
-📊 Exemplo de uso
+📊 **Exemplo de uso**
 
 -Fluxo típico dentro do sistema:
 
@@ -96,7 +96,7 @@ seleção de avaliações antigas atualiza os gráficos automaticamente
 
 **Isso permite ao professor acompanhar se o aluno está realmente evoluindo.**
 
-🚀 Como rodar o projeto localmente
+🚀 ***Como rodar o projeto localmente***
 
 Clone o repositório:
 
@@ -106,11 +106,11 @@ Entre na pasta do projeto:
 
 cd iron-metrics
 
-Instale as dependências:
+**Instale as dependências:**
 
       -pip install flask flask_sqlalchemy plotly
 
-Execute a aplicação:
+**Execute a aplicação:**
 
 python app.py
 
@@ -123,18 +123,18 @@ Usuário padrão:
 admin
 
 
-🧠 Desafios de desenvolvimento
+🧠 ***Desafios de desenvolvimento***
 
 Durante o desenvolvimento, um dos principais desafios foi evitar o problema de Double Submit (quando o navegador envia duas requisições e gera registros duplicados).
 
-  Para resolver isso, implementei:
+  *Para resolver isso, implementei:*
 
    validação de tempo no backend
 
    estado disabled no botão de envio via JavaScript
   Isso garantiu que os registros fossem salvos apenas uma vez, tornando o fluxo mais confiável.
 
-📚 Aprendizados
+📚 ***Aprendizados***
 
 Este projeto foi importante para praticar:
 
@@ -148,7 +148,7 @@ Este projeto foi importante para praticar:
 
 -prevenção de problemas comuns de formulário web
 
-🔮 Possíveis melhorias futuras
+🔮 **Possíveis melhorias futuras**
 
 -autenticação de múltiplos usuários
 
@@ -158,5 +158,5 @@ Este projeto foi importante para praticar:
 
 -deploy online da aplicação
 
-✅ Resultado:
+✅ ***Resultado:***
 Um sistema simples e funcional que demonstra como dados de avaliação física podem ser organizados e analisados de forma clara.
