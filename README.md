@@ -1,35 +1,98 @@
-🦾 Iron Metrics A ciência do shape, sem burocracia. O Iron Metrics nasceu da necessidade de visualizar a evolução física de forma bruta e precisa. Chega de planilhas de Excel bagunçadas ou apps cheios de anúncios. Aqui é código, peso e progresso. SIMPLES!
+The science of physique progress — simple, precise, and visual.
 
-🎯 Por que este projeto existe? Monitorar a composição corporal é um jogo de paciência. O problema é que a maioria das ferramentas foca apenas no peso total. O Iron Metrics separa o "joio do trigo": ele calcula sua massa magra e gordura real usando o protocolo de dobras cutâneas, entregando gráficos que mostram se você está realmente ganhando músculo ou apenas retendo líquido.
+Iron Metrics é uma aplicação web desenvolvida para registrar avaliações físicas e visualizar a evolução corporal de forma clara e objetiva.
 
-🛠 Eu escolhi um stack focado em performance e simplicidade:
+Muitos profissionais de academia ainda dependem de planilhas desorganizadas ou aplicativos limitados.
+Este projeto resolve esse problema criando um sistema simples e visual para acompanhar composição corporal ao longo do tempo.
 
-Python + Flask: O coração da lógica e das rotas.
+🎯 Problema
 
-SQLAlchemy: Para garantir que os dados dos alunos estejam seguros e bem estruturados.
+A maioria das ferramentas de acompanhamento físico possui uma interface díficil, com várias variáveis e diversos campos que tiram a praticidade e
+focam apenas no peso corporal total, o que pode gerar interpretações equivocadas.
 
-Plotly: Porque gráficos estáticos são chatos. Aqui a visualização é interativa.
+Por exemplo:
 
-Tailwind CSS: Para um visual Dark Mode moderno e agressivo, digno de uma central de comando.
+aumento de peso pode ser massa muscular
 
-✨ Funcionalidades Principais Gestão de Alunos: Adicione e gerencie múltiplos perfis rapidamente.
+ou retenção de líquido
 
-Cálculo de Dobras (7 Dobras): Insira os milímetros e deixe a matemática comigo.
+ou ganho de gordura
 
-Histórico de Perimetria: Braço, tórax, coxa... tudo organizado por data.
+Sem dados adequados, é difícil interpretar o progresso real.
 
-Dashboard de Evolução: Gráficos de linha para o BF% e gráficos de pizza para a composição atual.
+💡 Solução
 
-Interface Reativa: Clique em uma avaliação antiga na tabela e os gráficos se atualizam instantaneamente.
+O Iron Metrics utiliza o protocolo de 7 dobras cutâneas para estimar a composição corporal e apresentar os resultados de forma visual.
 
-🚀 Como rodar na sua máquina Se você quiser testar ou usar no seu consultório/academia, o processo é direto:
+O sistema permite:
 
-Clone o repositório:
+registrar avaliações físicas de forma muito fácil e simples
 
-Bash git clone https://github.com/seu-usuario/iron-metrics.git Instale as dependências:
+acompanhar histórico corporal
 
-Bash pip install flask flask_sqlalchemy plotly Inicie o motor:
+visualizar gráficos de evolução
 
-Bash python app.py Acesse http://127.0.0.1:5000 e use a senha padrão admin.
+analisar mudanças reais na composição corporal
 
-🧠 Desafios de Desenvolvimento (O que eu aprendi) Um dos maiores desafios foi lidar com o Double Submit do navegador (aquela dor de cabeça de salvar dois registros iguais). Resolvi isso implementando uma trava de segurança baseada em tempo no backend e um estado de disabled no botão de salvar via JavaScript. Ficou sólido.
+⚙️ Tecnologias utilizadas
+
+O projeto foi desenvolvido com uma stack simples e eficiente:
+
+Backend
+
+Python
+
+Flask
+
+SQLAlchemy
+
+Visualização de dados
+
+Plotly (gráficos interativos)
+
+Frontend
+
+Tailwind CSS (interface moderna em Dark Mode)
+
+✨ Funcionalidades
+Gestão de alunos
+
+cadastro de múltiplos perfis
+
+organização das avaliações por aluno
+
+Avaliação física
+
+cálculo de 7 dobras cutâneas
+
+registro de perimetria corporal (braço, tórax, coxa, etc.)
+
+Histórico de avaliações
+
+armazenamento das avaliações por data
+
+fácil navegação entre registros anteriores
+
+Dashboard de evolução
+
+gráfico de linha mostrando evolução do BF%
+
+gráfico de pizza mostrando composição atual
+
+Interface interativa
+
+seleção de avaliações antigas atualiza os gráficos automaticamente
+
+📊 Exemplo de uso
+
+Fluxo típico dentro do sistema:
+
+cadastrar um aluno
+
+registrar uma avaliação física
+
+inserir medidas e dobras cutâneas
+
+visualizar automaticamente os gráficos de evolução
+
+Isso permite ao professor acompanhar se o aluno está realmente evoluindo.
