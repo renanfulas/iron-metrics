@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="max-w-7xl mx-auto px-4">
+    <div class="flex justify-between items-center mb-8">
+        <h1 class="text-3xl font-black text-white italic">AVALIAÇÃO: {{ student.name }}</h1>
+        <div class="flex gap-4">
+            <a href="/student/{{ student.id }}/perimetria" class="bg-blue-600 hover:bg-blue-500 px-6 py-2 rounded-xl font-bold transition">Métricas de Fita (cm)</a>
+            <a href="/" class="bg-slate-800 px-4 py-2 rounded-xl font-bold">Voltar</a>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+        <aside class="lg:col-span-4 bg-slate-900 p-6 rounded-3xl border border-slate-800">
+            <h3 class="text-emerald-400 font-bold mb-4">Nova Dobra Cutânea</h3>
+            <form action="{{ url_for('add_assessment', student_id=student.id) }}" method="POST" class="space-y-4" id="form-avaliacao">
+                <input type="number" step="0.1" name="weight" placeholder="Peso (kg)" class="w-full bg-black border border-slate-700 p-3 rounded-xl text-white outline-none" required>
+                <div class="grid grid-cols-2 gap-2">
+                    <input type="number" step="0.1" name="triceps" placeholder="Tríceps" class="bg-black border border-slate-700 p-2 rounded-lg text-white outline-none" required>
+                    <input type="number" step="0.1" name="subscapular" placeholder="Subescapular" class="bg-black border border-slate-700 p-2 rounded-lg text-white outline-none" required>
+                    <input type="number" step="0.1" name="chest" placeholder="Peitoral" class="bg-black border border-slate-700 p-2 rounded-lg text-white outline-none" required>
+                    <input type="number" step="0.1" name="axillary" placeholder="Axilar Média" class="bg-black border border-slate-700 p-2 rounded-lg text-white outline-none" required>
+                    <input type="number" step="0.1" name="suprailiac" placeholder="Suprailíaca" class="bg-black border border-slate-700 p-2 rounded-lg text-white outline-none" required>
+                    <input type="number" step="0.1" name="abdominal" placeholder="Abdominal" class="bg-black border border-slate-700 p-2 rounded-lg text-white outline-none" required>
+                    <input type="number" step="0.1" name="thigh" placeholder="Coxa" class="bg-black border border-slate-700 p-2 rounded-lg text-white outline-none" required>
+                </div>
+                <button type="submit" id="btn-salvar" class="w-full bg-emerald-500 text-black font-bold py-3 rounded-xl hover:bg-emerald-400 transition disabled:opacity-50">
+                    SALVAR AVALIAÇÃO
+                </button>
+            </form>
+        </aside>
+
+        <main class="lg:col-span-8 space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div id="chartLine" class="bg-slate-900 p-4 rounded-3xl border border-slate-800 h-80"></div>
+                <div id="chartPie" class="bg-slate-900 p-4 rounded-3xl border border-slate-800 h-80"></div>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-slate-800 text-slate-400 uppercase text-[10px]">
+                        <tr><th class="p-4">Data</th><th class="p-4">% BF</th><th class="p-4">M. Magra</th><th class="p-4">M. Gorda</th></tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/5">
+                        {% for a in assessments %}
+                        <tr class="hover:bg-emerald-500/10 cursor-pointer transition group" 
+                            onclick="updateCharts('{{ a.lean_mass }}', '{{ a.fat_mass }}', '{{ a.body_fat }}', '{{ a.date.strftime('%d/%m/%Y') }}')">
+                            <td class="p-4 font-bold text-white">{{ a.date.strftime('%d/%m/%Y') }}</td>
+                            <td class="p-4 text-emerald-400 font-bold">{{ a.body_fat }}%</td>
+                            <td class="p-4 text-slate-300">{{ a.lean_mass }}kg</td>
+                            <td class="p-4 text-slate-300">{{ a.fat_mass }}kg</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+    // Bloqueio de duplo clique
+    document.getElementById('form-avaliacao').addEventListener('submit', function() {
+        const btn = document.getElementById('btn-salvar');
+        btn.disabled = true;
+        btn.innerText = 'PROCESSANDO...';
+    });
+
+    // Inicialização dos Gráficos
+    const lineData = {{ graphLineJSON | safe }};
+    const pieData = {{ graphPieJSON | safe }};
+
+    if (lineData.data) Plotly.newPlot('chartLine', lineData.data, lineData.layout, {responsive: true, displayModeBar: false});
+    if (pieData.data) Plotly.newPlot('chartPie', pieData.data, pieData.layout, {responsive: true, displayModeBar: false});
+
+    function updateCharts(lean, fat, bf, date) {
+        Plotly.update('chartPie', {
+            values: [[parseFloat(lean), parseFloat(fat)]]
+        }, {
+            title: `Composição em ${date} (${bf}%)`
+        });
+    }
+</script>
+{% endblock %}

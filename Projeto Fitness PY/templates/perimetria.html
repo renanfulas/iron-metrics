@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 pb-12">
+    <div class="flex justify-between items-center mb-8">
+        <h1 class="text-3xl font-black text-white italic uppercase">PERIMETRIA: {{ student.name }}</h1>
+        <a href="/student/{{ student.id }}" class="bg-slate-800 px-6 py-2 rounded-xl font-bold">Voltar</a>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <aside class="lg:col-span-4 bg-slate-900 p-8 rounded-3xl border border-slate-800">
+            <form action="/add_perimetria/{{ student.id }}" method="POST" class="space-y-4">
+                <div class="grid grid-cols-2 gap-2">
+                    <input type="number" step="0.1" name="height" placeholder="Altura (cm)" class="bg-black border border-slate-800 p-3 rounded-xl text-white outline-none focus:border-blue-500">
+                    <input type="number" step="0.1" name="weight" placeholder="Peso (kg)" class="bg-black border border-slate-800 p-3 rounded-xl text-white outline-none focus:border-blue-500">
+                </div>
+                
+                {% set campos = [
+                    ('arm', 'Braço'), ('forearm', 'Antebraço'), ('chest', 'Peitoral'),
+                    ('waist', 'Cintura'), ('abdomen', 'Abdômen'), ('hip', 'Quadril'),
+                    ('thigh', 'Coxa'), ('calf', 'Panturrilha')
+                ] %}
+
+                {% for id, nome in campos %}
+                <div class="flex flex-col">
+                    <label class="text-[10px] font-bold text-slate-500 uppercase ml-2">{{ nome }}</label>
+                    <input type="number" step="0.1" name="{{ id }}" placeholder="0.0" class="bg-black border border-slate-800 p-3 rounded-xl text-white outline-none focus:border-blue-500">
+                </div>
+                {% endfor %}
+                
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-black py-4 rounded-2xl transition uppercase">Salvar Medidas</button>
+            </form>
+        </aside>
+
+        <main class="lg:col-span-8">
+            <div class="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-slate-800 text-slate-500 uppercase text-[10px]">
+                        <tr><th class="p-5">Data</th><th class="p-5">Tronco</th><th class="p-5">Superiores</th><th class="p-5">Inferiores</th></tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/5">
+                        {% for p in history %}
+                        <tr class="hover:bg-blue-500/5 transition">
+                            <td class="p-5 text-white font-bold">{{ p.date.strftime('%d/%m/%Y') }}</td>
+                            <td class="p-5 text-slate-300">
+                                P: {{p.chest}} | C: {{p.waist}} | A: {{p.abdomen}}
+                            </td>
+                            <td class="p-5 text-blue-400">
+                                B: {{p.arm}} | Ant: {{p.forearm}}
+                            </td>
+                            <td class="p-5 text-blue-400">
+                                Coxa: {{p.thigh}} | Pant: {{p.calf}}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}  

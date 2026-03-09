@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Iron Metrics - Evolution</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #050505; }
+        .iron-card { background: #0a0a0a; border: 1px solid #1a1a1a; }
+    </style>
+</head>
+<body class="text-slate-300 font-sans">
+    <nav class="p-6 border-b border-white/5 mb-8">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-black text-white tracking-tighter">IRON <span class="text-emerald-500">METRICS</span></a>
+            <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Painel Administrativo</span>
+        </div>
+    </nav>
+    {% block content %}{% endblock %}
+</body>
+</html>
