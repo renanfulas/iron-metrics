@@ -7,8 +7,7 @@ Este projeto resolve esse problema criando um sistema simples e visual para acom
 
 🎯 Problema
 
-A maioria das ferramentas de acompanhamento físico possui uma interface díficil, com várias variáveis e diversos campos que tiram a praticidade e
-focam apenas no peso corporal total, o que pode gerar interpretações equivocadas.
+A maioria das ferramentas de acompanhamento físico foca apenas no peso corporal total, o que pode gerar interpretações equivocadas.
 
 Por exemplo:
 
@@ -26,7 +25,7 @@ O Iron Metrics utiliza o protocolo de 7 dobras cutâneas para estimar a composi�
 
 O sistema permite:
 
-registrar avaliações físicas de forma muito fácil e simples
+registrar avaliações físicas
 
 acompanhar histórico corporal
 
@@ -96,3 +95,67 @@ inserir medidas e dobras cutâneas
 visualizar automaticamente os gráficos de evolução
 
 Isso permite ao professor acompanhar se o aluno está realmente evoluindo.
+
+🚀 Como rodar o projeto localmente
+
+Clone o repositório:
+
+git clone https://github.com/seu-usuario/iron-metrics.git
+
+Entre na pasta do projeto:
+
+cd iron-metrics
+
+Instale as dependências:
+
+pip install flask flask_sqlalchemy plotly
+
+Execute a aplicação:
+
+python app.py
+
+Acesse no navegador:
+
+http://127.0.0.1:5000
+
+Usuário padrão:
+
+admin
+🧠 Desafios de desenvolvimento
+
+Durante o desenvolvimento, um dos principais desafios foi evitar o problema de Double Submit (quando o navegador envia duas requisições e gera registros duplicados).
+
+Para resolver isso, implementei:
+
+validação de tempo no backend
+
+estado disabled no botão de envio via JavaScript
+
+Isso garantiu que os registros fossem salvos apenas uma vez, tornando o fluxo mais confiável.
+
+📚 Aprendizados
+
+Este projeto foi importante para praticar:
+
+estruturação de aplicações web com Flask
+
+modelagem de dados com SQLAlchemy
+
+visualização de dados com Plotly
+
+integração entre backend e frontend
+
+prevenção de problemas comuns de formulário web
+
+🔮 Possíveis melhorias futuras
+
+autenticação de múltiplos usuários
+
+exportação de relatórios em PDF
+
+comparação entre avaliações
+
+deploy online da aplicação
+
+✅ Resultado:
+Um sistema simples e funcional que demonstra como dados de avaliação física podem ser organizados e analisados de forma clara.
